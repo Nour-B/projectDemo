@@ -1,0 +1,665 @@
+
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            position: relative;
+        }
+        #section1 {padding-top:50px;height:1500px;color: #fff; background-color: #1E88E5;}
+        #section2 {padding-top:50px;height:1500px;color: #fff; background-color: #673ab7;}
+        #section3 {padding-top:50px;height:1500px;color: #fff; background-color: #ff9800;}
+        #section4 {padding-top:50px;height:1500px;color: #fff; background-color: #00bcd4;}
+        #section5 {padding-top:50px;height:1500px;color: #fff; background-color: #009688;}
+    </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+
+
+
+            </button>
+            <a class="navbar-brand" href="#">MON CV</a>
+        </div>
+        <div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#section1">Personal information</a></li>
+                    <li><a href="#section2">Qualities</a></li>
+                    <li><a href="#section3">Skills</a></li>
+                    <li><a href="#section4">Experience</a></li>
+                    <li><a href="#section5">Training</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div id="section1" class="container-fluid">
+    <h1>Personal information</h1>
+
+
+    <div class="panel-body">
+        <form class="form-horizontal"
+              novalidate
+              (ngSubmit)="save()"
+              [formGroup]="personForm">
+            <fieldset>
+                <div class="form-group"
+                     [ngClass]="{'has-error': (personForm.get('firstName').touched || personForm.get('firstName').dirty) && !personForm.get('firstName').valid }">
+                    <label class="col-md-2 control-label"
+                           for="firstNameId">First Name</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control"
+                               id="firstNameId"
+                               type="text"
+                               placeholder=" Nour"
+                               formControlName="firstName"/>
+                        <span class="help-block" *ngIf="(personForm.get('firstName').touched || personForm.get('firstName').dirty) && personForm.get('firstName').errors">
+                            <span *ngIf="personForm.get('firstName').errors.required">
+                                Please enter your first name.
+                            </span>
+                            <span *ngIf="personForm.get('firstName').errors.minlength">
+                                The first name must be longer than 3 characters.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     [ngClass]="{'has-error': (personForm.get('lastName').touched || personForm.get('lastName').dirty) && !personForm.get('lastName').valid }">
+                    <label class="col-md-2 control-label"
+                           for="lastNameId">Last Name</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control"
+                               id="lastNameId"
+                               type="text"
+                               placeholder="Last Name (required)"
+                               formControlName="lastName" />
+                        <span class="help-block" *ngIf="(personForm.get('lastName').touched || personForm.get('lastName').dirty) && personForm.get('lastName').errors">
+                            <span *ngIf="personForm.get('lastName').errors.required">
+                                Please enter your last name.
+                            </span>
+                        </span>
+                    </div>
+
+
+    </div>
+
+                <div formGroupName="addressGroup"
+                     [ngClass]="{'has-error': personForm.get('addressGroup').errors}">
+                    <div class="form-group"
+                         [ngClass]="{'has-error': (personForm.get('addressGroup.city').touched || personForm.get('addressGroup.city').dirty) && !personForm.get('addressGroup.city').valid }">
+                        <label class="col-md-2 control-label"
+                               for="cityId">City</label>
+
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                   id="cityId"
+                                   type="text"
+                                   placeholder="city"
+                                   formControlName="city"/>
+                            <span class="help-block" *ngIf="(personForm.get('addressGroup.city').touched || personForm.get('addressGroup.city').dirty) && personForm.get('addressGroup.city').errors">
+                            <span *ngIf="personForm.get('addressGroup.city').errors.required">
+                                Please enter your city.
+                            </span>
+                        </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                         [ngClass]="{'has-error': (personForm.get('addressGroup.street').touched || personForm.get('addressGroup.street').dirty) && !personForm.get('addressGroup.street').valid }">
+                        <label class="col-md-2 control-label"
+                               for="streetId">Street</label>
+
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                   id="streetId"
+                                   type="text"
+                                   placeholder="street (required)"
+                                   formControlName="street" />
+                            <span class="help-block" *ngIf="(personForm.get('addressGroup.street').touched || personForm.get('addressGroup.street').dirty) && personForm.get('addressGroup.street').errors">
+                            <span *ngIf="personForm.get('addressGroup.street').errors.required">
+                                Please enter your Street .
+                            </span>
+                        </span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group"
+                         [ngClass]="{'has-error': (personForm.get('addressGroup.zip').touched || personForm.get('addressGroup.zip').dirty) && !personForm.get('addressGroup.zip').valid }">
+                        <label class="col-md-2 control-label"
+                               for="zipId">Zip</label>
+
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                   id="zipId"
+                                   type="text"
+                                   placeholder="pays(required)"
+                                   formControlName="zip" />
+                            <span class="help-block" *ngIf="(personForm.get('addressGroup.zip').touched || personForm.get('addressGroup.zip').dirty) && personForm.get('addressGroup.zip').errors">
+                            <span *ngIf="personForm.get('addressGroup.zip').errors.required">
+                                Please enter your pays.
+                            </span>
+                        </span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label"
+                           for="payId">Pays</label>
+                    <div class="col-md-8">
+
+                        <select class="form-control"
+                                id="payId"
+
+                                formControlName="pay">
+                            <option *ngFor="let pay of pays" [value]="pay">{{pay}}</option>
+                        </select>
+
+                </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label"
+                           for="seId">Sexe</label>
+                    <div class="col-md-8">
+
+                        <select class="form-control"
+                                id="seId"
+
+                                formControlName="se">
+                            <option *ngFor="let se of sexe" [value]="se">{{se}}</option>
+                        </select>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div formGroupName="emailGroup"
+                     [ngClass]="{'has-error': personForm.get('emailGroup').errors}">
+
+
+                    <div class="form-group"
+                         [ngClass]="{'has-error': emailMessage}">
+                        <label class="col-md-2 control-label"
+                               for="emailId">Email</label>
+
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                   type="email"                               id="emailId"
+
+                                   placeholder="Email (required)"
+                                   formControlName="email" />
+                            <span class="help-block" *ngIf="emailMessage">
+                            {{emailMessage}}
+
+
+                        </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                         [ngClass]="{'has-error': (personForm.get('emailGroup.confirmEmail').touched || personForm.get('emailGroup.confirmEmail').dirty) && !personForm.get('emailGroup.confirmEmail').valid }">
+                        <label class="col-md-2 control-label"
+                               for="confirmEmailId">Confirm Email</label>
+
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                   id="confirmEmailId"
+                                   type="email"
+                                   placeholder="confirmEmail (required)"
+                                   formControlName="confirmEmail" />
+                            <span class="help-block" *ngIf="(personForm.get('emailGroup.confirmEmail').touched || personForm.get('emailGroup.confirmEmail').dirty) && personForm.get('emailGroup.confirmEmail').errors">
+                            <span *ngIf="personForm.get('emailGroup.confirmEmail').errors.required">
+                                Please confirm your email address.
+                            </span>
+                            <span *ngIf="personForm.get('emailGroup.confirmEmail').errors.pattern">
+                                Please confirm your email address.
+                            </span>
+
+                                <!-- This one does not work -->
+                            <span *ngIf="personForm.get('emailGroup.confirmEmail').errors.email">
+                                Please confirm your email address.
+                            </span>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group"
+                     [ngClass]="{'has-error': !personForm.get('phone').valid }">
+                    <label class="col-md-2 control-label"
+                           for="phoneId">phone</label>
+                    <div class="col-md-8">
+                        <input class="form-control"
+                               id="phoneId"
+                               type="tel"
+                               placeholder="phone"
+
+                               formControlName="phone">
+                        <span class="help-block" *ngIf="personForm.get('phone').errors">
+                            <span *ngIf="personForm.get('phone').errors.required">
+                                Please enter your phone number .
+                            </span>
+                            </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Send Notifications</label>
+                    <div class="col-md-8">
+                        <label class="radio-inline">
+                            <input type="radio"
+                                   value="email"
+                                   formControlName="notification"
+
+                            >Email
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio"
+                                   value="text"
+                                   formControlName="notification"
+
+                            >Text
+                        </label>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group"
+                     [ngClass]="{'has-error': (personForm.get('rating').touched ||
+               personForm.get('rating').dirty)&& !personForm.get('rating').valid}">
+                    <label class="col-md-2 control-label"
+                           for="ratingId">Rating</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control"
+                               id="ratingId"
+                               type="number"
+                               formControlName="rating"/>
+                        <span class="help-block" *ngIf="(personForm.get('rating').touched||
+personForm.get('rating').dirty) && personForm.get('rating'.errors)">
+                      <span *ngIf="personForm.get('rating').errors.range">
+                          Please rate  your experience from 1 to 5
+                      </span>
+                  </span>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div class="form-group">
+                    <div class="col-md-4 col-md-offset-2">
+                        <span>
+                            <button class="btn btn-primary"
+                                    type="submit"
+                                    [disabled]="!personForm.valid">
+                                Save
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+
+<div id="section2" class="container-fluid">
+<h1>Qualities</h1>
+
+    <div class="panel-body">
+        <form class="form-horizontal"
+              novalidate
+              (ngSubmit)="save()"
+              [formGroup]="personForm">
+            <fieldset>
+
+                <div formArrayName="qualities">
+                    <div class="row">
+                        <button class="col-md-offset-1 col-md-1 btn btn-default"
+                                type="button"
+                                (click)="addQualitie()">Add quality
+                        </button>
+                    </div>
+
+
+                <div class="form-group"
+                     *ngFor="let quality of qualities.controls; let i=index" >
+                    <label class="col-md-2 control-label" [attr.for]="i">Quality</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control"
+                               [id]="i"
+                               type="text"
+                               placeholder="quality"
+                               [formControlName]="i" />
+                    </div>
+                </div>
+                </div>
+
+
+
+
+
+
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+<div id="section3" class="container-fluid">
+    <h1>Skills</h1>
+
+    <div class="panel-body">
+        <form class="form-horizontal"
+              novalidate
+              (ngSubmit)="save()"
+              [formGroup]="personForm">
+            <fieldset>
+
+                <div class="form-group">
+                    <div class="col-md-4 col-md-offset-2">
+                        <span>
+                            <button class="btn btn-primary"
+                                    type="button"
+                                    (click)="addSkills()" >
+                                Add Another skills
+                            </button>
+
+                        </span>
+
+                    </div>
+                </div>
+
+              <!--  <div formArrayName="skills"
+                     *ngfor="let skill of skills.controls ; let i=index">
+
+                <div [formGroupName]="i">
+
+
+
+                    <div class="form-group"
+                         [ngClass]="{'has-error': (personForm.get('i.skillName').touched || personForm.get('i.skillName').dirty) && !personForm.get('i.skillName').valid }">
+                        <label class="col-md-2 control-label"
+                               attr.for="{{ 'skillId'+ i }}">Skill Name</label>
+
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                   id="{{ 'skillId'+i }}"
+                                   type="text"
+                                   placeholder="Skill Name (required)"
+                                   formControlName="skillName" />
+                            <span class="help-block" *ngIf="(personForm.get('i.skillName').touched || personForm.get('i.skillName').dirty) && personForm.get('i.skillName').errors">
+                            <span *ngIf="personForm.get('i.skillName').errors.required">
+                                Please enter your skill.
+                            </span>
+                        </span>
+                        </div>
+
+
+                    </div>
+
+
+                <div class="form-group"
+                     [ngClass]="{'has-error': (personForm.get('i.ratings').touched || personForm.get('i.ratings').dirty) && !personForm.get('i.ratings').valid }">
+                    <label class="col-md-2 control-label"
+                          attr.for="{{'ratingsId' + i}}">Rating</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control"
+                               id="{{'ratingsId' + i}}"
+                               type="text"
+                               placeholder="Rating (required)"
+                               formControlName="ratings" />
+                        <span class="help-block" *ngIf="(personForm.get('i.ratings').touched || personForm.get('i.ratings').dirty) && personForm.get('i.ratings').errors">
+                            <span *ngIf="personForm.get('i.ratings').errors.required">
+                                Please enter your skill.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+
+
+
+
+  </div>
+</div>-->
+
+
+    </fieldset>
+    </form>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="section4" class="container-fluid">
+    <h1>Experience</h1>
+    <div class="panel-body">
+        <form class="form-horizontal"
+              novalidate
+              (ngSubmit)="save()"
+              [formGroup]="personForm">
+            <fieldset>
+
+
+                <div formGroupName="stageGroup"
+                     [ngClass]="{'has-error': personForm.get('stageGroup').errors}">
+
+
+                    <div class="form-group">
+                    <label class="col-md-2 control-label"
+                           for="experience_typeId">Experience Type</label>
+                    <div class="col-md-8">
+
+                        <select class="form-control"
+                                id="experience_typeId"
+
+                                formControlName="experience_type">
+                            <option *ngFor="let experience_type of stage" [value]="experience_type">{{experience_type}}</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"
+                               for="pay1Id">Location</label>
+                        <div class="col-md-8">
+
+                            <select class="form-control"
+                                    id="pay1Id"
+
+                                    formControlName="pay">
+                                <option *ngFor="let pay of pays" [value]="pay">{{pay}}</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group"
+                         [ngClass]="{'has-error': (personForm.get('stageGroup.function').touched || personForm.get('stageGroup.function').dirty) && !personForm.get('stageGroup.function').valid }">
+                        <label class="col-md-2 control-label"
+                               for="functionId">Function</label>
+
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                   id="functionId"
+                                   type="text"
+                                   placeholder="function(required)"
+                                   formControlName="function" />
+                            <span class="help-block" *ngIf="(personForm.get('stageGroup.function').touched || personForm.get('stageGroup.function').dirty) && personForm.get('stageGroup.function').errors">
+                            <span *ngIf="personForm.get('stageGroup.function').errors.required">
+                                Please enter your last name.
+                            </span>
+                        </span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group"
+                         [ngClass]="{'has-error': (personForm.get('stageGroup.entreprise').touched || personForm.get('stageGroup.entreprise').dirty) && !personForm.get('stageGroup.entreprise').valid }">
+                        <label class="col-md-2 control-label"
+                               for="entrepriseId">Company</label>
+
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                   id="entrepriseId"
+                                   type="text"
+                                   placeholder="function(required)"
+                                   formControlName="entreprise" />
+                            <span class="help-block" *ngIf="(personForm.get('stageGroup.entreprise').touched || personForm.get('stageGroup.entreprise').dirty) && personForm.get('stageGroup.entreprise').errors">
+                            <span *ngIf="personForm.get('stageGroup.entreprise').errors.required">
+                                Please enter your entreprise name .
+                            </span>
+                        </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comment">Task:</label>
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                    </div>
+
+                    <p>period Time</p>
+
+                    <div class="col-xs-2">
+                        <label for="ex1">FROM</label>
+                        <input class="form-control" id="ex1" type="text">
+                    </div>
+                    <div class="col-xs-2">
+                        <label for="ex2">TO</label>
+                        <input class="form-control" id="ex2" type="text">
+                    </div>
+
+
+
+
+
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+<div id="section5" class="container-fluid">
+    <img src="/app/images/images.jpg" width="50" height="50">
+    <h1>training</h1>
+
+    <div class="panel-body">
+        <form class="form-horizontal"
+              novalidate
+              (ngSubmit)="save()"
+              [formGroup]="personForm">
+            <fieldset>
+                <div class="form-group">
+                    <div class="col-xs-4">
+                        <label for="ex11">training</label>
+                        <input class="form-control" id="ex11" type="text">
+                    </div>
+                    <div class="col-xs-4">
+                        <label for="ex22">Company</label>
+                        <input class="form-control" id="ex22" type="text">
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="comment1">Training Description</label>
+                    <textarea class="form-control" rows="5" id="comment1"></textarea>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="col-xs-2">
+                        <label for="ex3">From</label>
+                        <input class="form-control" id="ex3" type="text">
+                    </div>
+                    <div class="col-xs-3">
+                        <label for="ex4">To</label>
+                        <input class="form-control" id="ex4" type="text">
+                    </div>
+                </div>
+
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<br>Dirty: {{ personForm.dirty }}
+<br>Touched: {{ personForm.touched }}
+<br>Valid: {{ personForm.valid }}
+<br>Value: {{ personForm.value | json }}
